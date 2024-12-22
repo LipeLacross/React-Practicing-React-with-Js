@@ -18,9 +18,10 @@ function Player() {
                 }
             })
             .catch(erro => {
-                console.error("Erro ao buscar o vídeo:", erro);
+                return <NaoEncontrada />
             });
     }, [parametros.id]); // Adicione parametros.id aqui
+
 
     return (
         <>
