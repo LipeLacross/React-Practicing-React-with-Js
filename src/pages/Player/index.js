@@ -13,13 +13,14 @@ function Player() {
         fetch(`https://my-json-server.typicode.com/monicahillman/cinetag-api/videos?id=${parametros.id}`)
             .then(resposta => resposta.json())
             .then(dados => {
-                setVideo(...dados)
+                if (dados.length > 0) {
+                    setVideo(dados[0]); // Pegue o primeiro item do array
+                }
             })
-    }, [])
-
-    if (!video) {
-        return <NaoEncontrada />
-    }
+            .catch(erro => {
+                console.error("Erro ao buscar o vídeo:", erro);
+            });
+    }, [parametros.id]); // Adicione parametros.id aqui
 
     return (
         <>
